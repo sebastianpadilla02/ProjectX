@@ -262,7 +262,7 @@
     }
   }
   
-
+  /* Para dispositivos con safe-area */
   @supports (padding: max(0px)) {
     @media (max-width: 688px) {
       .sidebar {
@@ -280,6 +280,7 @@
     }
   }
   
+  /* Touch device optimization */
   @media (hover: hover) {
     .menu-item:hover,
     .logo:hover,

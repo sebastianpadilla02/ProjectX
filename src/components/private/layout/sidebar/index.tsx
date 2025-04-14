@@ -31,7 +31,7 @@ const Sidebar = () => {
         <div className="logo-wrapper">
           <Link to="/home" aria-label="X">
             <div className="logo">
-              <RiTwitterXFill size={28} />
+              <RiTwitterXFill size={28} color='white' />
             </div>
           </Link>
         </div>
