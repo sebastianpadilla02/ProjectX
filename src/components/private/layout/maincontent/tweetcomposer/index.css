@@ -1,0 +1,70 @@
+.tweet-composer {
+    padding: 16px;
+    border-bottom: 1px solid rgb(47, 51, 54);
+  }
+  
+  .tweet-composer-inner {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .composer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .composer-content textarea {
+    width: 100%;
+    min-height: 120px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 12px 0;
+    resize: none;
+    font-family: inherit;
+  }
+  
+  .composer-content textarea::placeholder {
+    color: rgb(113, 118, 123);
+  }
+  
+  .composer-content textarea:focus {
+    outline: none;
+  }
+  
+  .post-button {
+    align-self: flex-end;
+    background-color: rgb(29, 155, 240);
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    padding: 8px 16px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .post-button:hover:not(:disabled) {
+    background-color: rgb(26, 140, 216);
+  }
+  
+  .post-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  @media (max-width: 688px) {
+    .composer-content textarea {
+      font-size: 18px;
+    }
+  }

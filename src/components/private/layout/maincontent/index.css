@@ -1,0 +1,107 @@
+:root {
+    --main-border-color: rgb(47, 51, 54);
+    --primary-color: rgb(29, 155, 240);
+    --text-color: #fff;
+  }
+  
+  .main-content {
+    width: 100%;
+    border-left: 1px solid var(--main-border-color);
+    border-right: 1px solid var(--main-border-color);
+  }
+  
+  /* Header Styles */
+  .main-header {
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.65);
+    border-bottom: 1px solid var(--main-border-color);
+    z-index: 10;
+    padding: 16px;
+  }
+  
+  .main-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-color);
+  }
+  
+  /* Tweet Composer Styles */
+  .tweet-composer {
+    padding: 16px;
+    border-bottom: 1px solid var(--main-border-color);
+  }
+  
+  .tweet-composer-inner {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .composer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  textarea {
+    width: 100%;
+    min-height: 120px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 20px;
+    padding: 12px 0;
+    resize: none;
+  }
+  
+  textarea::placeholder {
+    color: rgb(113, 118, 123);
+  }
+  
+  textarea:focus {
+    outline: none;
+  }
+  
+  .post-button {
+    align-self: flex-end;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 9999px;
+    padding: 8px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .post-button:hover {
+    background-color: rgb(26, 140, 216);
+  }
+  
+  .post-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 688px) {
+    .main-content {
+      border: none;
+    }
+  
+    .main-header {
+      padding-top: env(safe-area-inset-top, 0);
+    }
+  
+    textarea {
+      font-size: 18px;
+    }
+  }
