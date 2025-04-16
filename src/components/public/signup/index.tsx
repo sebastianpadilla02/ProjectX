@@ -15,6 +15,31 @@ function SignUp() {
     passwordConfirmation: ''
   })
 
+  const handleSignUp = async () => {
+    console.log('Form data:', formData);
+    // Validate password confirmation
+
+    try {
+      const response = await fetch('https://api.example.com/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('User registered successfully:', data);
+        navigate('/login');
+      } else {
+        console.error('Error registering user:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
 
   return (
     <div className="register-wrapper">
@@ -35,7 +60,7 @@ function SignUp() {
                 name="name"
                 placeholder="Nombre"
                 value={formData.name}
-                /* onChange={} */
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
                 required
               />
             </div>
@@ -46,7 +71,7 @@ function SignUp() {
                 name="email"
                 placeholder="Correo electrónico"
                 value={formData.email}
-                /* onChange={} */
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
                 required
               />
             </div>
@@ -57,7 +82,7 @@ function SignUp() {
                 name="username"
                 placeholder="Nombre de usuario"
                 value={formData.username}
-                /* onChange={} */
+                onChange={(e) => setFormData({...formData, username: e.target.value})}
                 required
               />
             </div>
@@ -68,7 +93,7 @@ function SignUp() {
                 name="password"
                 placeholder="Contraseña"
                 value={formData.password}
-                /* onChange={} */
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
                 required
               />
             </div>
@@ -79,7 +104,7 @@ function SignUp() {
                 name="passwordConfirmation"
                 placeholder="Confirmar contraseña"
                 value={formData.passwordConfirmation}
-                /* onChange={} */
+                onChange={(e) => setFormData({...formData,passwordConfirmation: e.target.value})}
                 required
               />
             </div>
@@ -91,7 +116,7 @@ function SignUp() {
               <a href="#" className="link">política de Uso de Cookies</a>.
             </div>
 
-            <button type="submit" className="register-button">
+            <button type="button" className="register-button" onClick ={handleSignUp}>
               Crear cuenta
             </button>
           </form>
