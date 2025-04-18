@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import './index.css'
 
+const apiURL = 'http://localhost:8083';
 
 function SignUp() {
 
@@ -16,11 +17,58 @@ function SignUp() {
   })
 
   const handleSignUp = async () => {
+    const message = document.getElementById('error-message');
+    // Validate form data before sending to server
     console.log('Form data:', formData);
     // Validate password confirmation
+    
+    if(message) {
+
+      if (formData.name === '', formData.email === '', formData.username === '', formData.password === '', formData.passwordConfirmation === '') {
+        message.innerHTML = "Por favor, completa todos los campos";
+        message.style.color = "red";
+        return;
+      }
+
+      if (formData.name.length < 3) {
+        message.innerHTML = "El nombre debe tener al menos 2 caracteres";
+        message.style.color = "red";
+        return;
+      }
+    
+      if (!formData.email.includes('@')) {
+        message.innerHTML = "Por favor, introduce un correo electrónico válido";
+        message.style.color = "red";
+        return;
+      }
+
+      if (formData.username.length < 6) {
+        message.innerHTML = "El nombre de usuario debe tener al menos 3 caracteres";
+        message.style.color = "red";
+        return;
+      }
+
+      if (formData.password.length < 6) {
+        message.innerHTML = "La contraseña debe tener al menos 6 caracteres";
+        message.style.color = "red";
+        return;
+      }
+
+      if (formData.password !== formData.passwordConfirmation) {
+        message.innerHTML = "Las contraseñas no coinciden";
+        message.style.color = "red";
+        return;
+      }
+
+      message.innerHTML = ""; // Clear previous messages
+    }
+
+    console.log('Sending data to the server...');
+
+    const url = `${apiURL}/api/users`;
 
     try {
-      const response = await fetch('https://api.example.com/signup', {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -31,7 +79,30 @@ function SignUp() {
       if (response.ok) {
         const data = await response.json();
         console.log('User registered successfully:', data);
-        navigate('/login');
+
+        if(message) {
+          message.innerHTML = "User registered successfully";
+          message.style.color = "green";
+        }
+
+        if(document) {
+          const name = document.getElementById('name') as HTMLInputElement;
+          const email = document.getElementById('email') as HTMLInputElement;
+          const username = document.getElementById('username') as HTMLInputElement;
+          const password = document.getElementById('password') as HTMLInputElement;
+          const passwordConfirmation = document.getElementById('passwordConfirmation') as HTMLInputElement;
+          name.value = '';
+          email.value = '';
+          username.value = '';
+          password.value = '';
+          passwordConfirmation.value = '';
+        }
+
+        // Redirect to login page after successful registration
+        setTimeout(() => { 
+          navigate('/login');
+        }
+        , 5000); // Redirect after 5 seconds
       } else {
         console.error('Error registering user:', response.statusText);
       }
@@ -58,6 +129,7 @@ function SignUp() {
               <input
                 type="text"
                 name="name"
+                id="name"
                 placeholder="Nombre"
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -69,6 +141,7 @@ function SignUp() {
               <input
                 type="email"
                 name="email"
+                id="email"
                 placeholder="Correo electrónico"
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -80,6 +153,7 @@ function SignUp() {
               <input
                 type="text"
                 name="username"
+                id="username"
                 placeholder="Nombre de usuario"
                 value={formData.username}
                 onChange={(e) => setFormData({...formData, username: e.target.value})}
@@ -91,6 +165,7 @@ function SignUp() {
               <input
                 type="password"
                 name="password"
+                id="password"
                 placeholder="Contraseña"
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
@@ -102,11 +177,15 @@ function SignUp() {
               <input
                 type="password"
                 name="passwordConfirmation"
+                id="passwordConfirmation"
                 placeholder="Confirmar contraseña"
                 value={formData.passwordConfirmation}
                 onChange={(e) => setFormData({...formData,passwordConfirmation: e.target.value})}
                 required
               />
+            </div>
+
+            <div id="error-message" className="error-message">
             </div>
 
             <div className="terms-text">
