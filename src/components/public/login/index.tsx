@@ -60,6 +60,8 @@ function Login() {
             return;
           }
           localStorage.setItem('token', token);
+          localStorage.setItem('username', responseData?.data?.username);
+          localStorage.setItem('name', responseData?.data?.name);
           navigate('/home');
       } else {
           message.innerHTML = 'Usuario o Contraseña incorrectos';
