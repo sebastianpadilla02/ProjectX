@@ -69,43 +69,44 @@ const TweetList = () => {
   return (
     <div className="tweet-list">
       {tweets.map(tweet => {
-
-        return (
-          <article key={tweet.id} className="tweet">
-            <img 
-              src="/avatar.png" 
-              alt={tweet.user.username} 
-              className="tweet-avatar"
-            />
-            <div className="tweet-content">
-              <div className="tweet-header">
-                <span className="tweet-name">{tweet.user.username}</span>
-                <span className="tweet-dot">·</span>
-                <span className="tweet-time">{tweet.createdAt}</span>
+        if(tweet.user.username === localStorage.getItem('username')){
+          return (
+            <article key={tweet.id} className="tweet">
+              <img 
+                src="/avatar.png" 
+                alt={tweet.user.username} 
+                className="tweet-avatar"
+              />
+              <div className="tweet-content">
+                <div className="tweet-header">
+                  <span className="tweet-name">{tweet.user.username}</span>
+                  <span className="tweet-dot">·</span>
+                  <span className="tweet-time">{tweet.createdAt}</span>
+                </div>
+                <p className="tweet-text">{tweet.content}</p>
+                <div className="tweet-stats">
+                  <button className="tweet-stat">
+                    <FaRegComment className="stat-icon" />
+                    {/* <span className="stat-number">{formatNumber(tweet.replies)}</span> */}
+                  </button>
+                  <button 
+                    // className={`tweet-stat ${isLiked ? 'liked' : ''}`}
+                    // onClick={() => handleLike(tweet.id)}
+                  >
+                    {/* {isLiked ? (
+                      <FaHeart className="stat-icon" />
+                    ) : (
+                      <FaRegHeart className="stat-icon" />
+                    )}
+                    <span className="stat-number">
+                      {formatNumber(isLiked ? tweet.likes + 1 : tweet.likes)}
+                    </span> */}
+                  </button>
+                </div>
               </div>
-              <p className="tweet-text">{tweet.content}</p>
-              <div className="tweet-stats">
-                <button className="tweet-stat">
-                  <FaRegComment className="stat-icon" />
-                  {/* <span className="stat-number">{formatNumber(tweet.replies)}</span> */}
-                </button>
-                <button 
-                  // className={`tweet-stat ${isLiked ? 'liked' : ''}`}
-                  // onClick={() => handleLike(tweet.id)}
-                >
-                  {/* {isLiked ? (
-                    <FaHeart className="stat-icon" />
-                  ) : (
-                    <FaRegHeart className="stat-icon" />
-                  )}
-                  <span className="stat-number">
-                    {formatNumber(isLiked ? tweet.likes + 1 : tweet.likes)}
-                  </span> */}
-                </button>
-              </div>
-            </div>
-          </article>
-        );
+            </article>
+          );
+        }
       })}
     </div>
   );
