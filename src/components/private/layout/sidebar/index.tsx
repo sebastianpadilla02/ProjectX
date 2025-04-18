@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { RiTwitterXFill } from 'react-icons/ri';
@@ -11,6 +11,7 @@ interface MenuItem {
 }
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const menuItems: MenuItem[] = [
     {
       icon: <AiFillHome size={26} />,
@@ -23,6 +24,12 @@ const Sidebar = () => {
       path: "/profile"
     }
   ];
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    console.log("Logout clicked");
+    navigate('/login');
+  };
 
   return (
     <header className="sidebar">
@@ -56,6 +63,12 @@ const Sidebar = () => {
         <div className="post-button-wrapper">
           <button className="post-button">
             <span className="post-button-text">Post</span>
+          </button>
+        </div>
+
+        <div className="logout-wrapper">
+          <button type='button' className="logout-button" onClick={handleLogout}>
+            <span className="logout-button-text">Logout</span>
           </button>
         </div>
 

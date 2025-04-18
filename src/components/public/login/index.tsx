@@ -3,13 +3,74 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import './index.css'
 
-function Login() {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        username: '',
-        password: ''
-    })
+const apiURL = 'http://localhost:8083';
 
+function Login() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+      username: '',
+      password: ''
+  })
+
+  const handleLogin = async () => {
+    const message = document.getElementById('error-message');
+    // Validate form data before sending to server
+    console.log('Form data:', formData);
+    // Validate password confirmation
+    
+    if(message) {
+
+      if (formData.username === '', formData.password === '') {
+        message.innerHTML = "Complete todos los campos";
+        message.style.color = "red";
+        return;
+      }
+
+      if (formData.username.length < 6) {
+        message.innerHTML = "El nombre de usuario debe tener al menos 6 caracteres";
+        message.style.color = "red";
+        return;
+      }
+
+      if (formData.password.length < 6) {
+        message.innerHTML = "La contraseña debe tener al menos 6 caracteres";
+        message.style.color = "red";
+        return;
+      }
+
+      const url = `${apiURL}/api/users/login`;
+
+      const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+      });
+
+      const responseData = await response.json();
+
+      console.log(responseData);
+
+      if (response.ok) {
+          const token = responseData?.data?.token;
+          if(!token) {
+            message.innerHTML = "Token no encontrado";
+            message.style.color = "red";
+            return;
+          }
+          localStorage.setItem('token', token);
+          navigate('/home');
+      } else {
+          message.innerHTML = 'Usuario o Contraseña incorrectos';
+          message.style.color = "red";
+      }
+    }
+
+    const password = document.getElementById('password') as HTMLInputElement;
+    password.value = '';
+  }
+  
   return (
       <div className="login-wrapper">
       <div className="login-container">
@@ -29,7 +90,7 @@ function Login() {
                 name="username"
                 placeholder="Nombre de usuario"
                 value={formData.username} 
-                /* onChange={} */
+                onChange={(e) => setFormData({...formData, username: e.target.value})}
                 required
               />
             </div>
@@ -40,12 +101,15 @@ function Login() {
                 name="password"
                 placeholder="Contraseña"
                 value={formData.password}
-                /* onChange={} */
+                onChange={(e) => setFormData({...formData, password: e.target.value})}
                 required
               />
             </div>
 
-            <button type="submit" className="login-button">
+            <div className="error-message" id="error-message">
+            </div>
+
+            <button type="button" className="login-button" onClick={handleLogin}>
               Siguiente
             </button>
 
