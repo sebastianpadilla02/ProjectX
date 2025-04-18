@@ -66,6 +66,9 @@ function Login() {
           message.style.color = "red";
       }
     }
+
+    const password = document.getElementById('password') as HTMLInputElement;
+    password.value = '';
   }
   
   return (
