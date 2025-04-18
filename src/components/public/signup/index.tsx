@@ -25,7 +25,7 @@ function SignUp() {
     if(message) {
 
       if (formData.name === '', formData.email === '', formData.username === '', formData.password === '', formData.passwordConfirmation === '') {
-        message.innerHTML = "Por favor, completa todos los campos";
+        message.innerHTML = "Complete todos los campos";
         message.style.color = "red";
         return;
       }
@@ -37,7 +37,7 @@ function SignUp() {
       }
     
       if (!formData.email.includes('@')) {
-        message.innerHTML = "Por favor, introduce un correo electrónico válido";
+        message.innerHTML = "Introduzca un correo electrónico válido";
         message.style.color = "red";
         return;
       }
@@ -104,7 +104,13 @@ function SignUp() {
         }
         , 5000); // Redirect after 5 seconds
       } else {
-        console.error('Error registering user:', response.statusText);
+        const errorData = await response.json();
+        console.error('Error registering user:', errorData.message);
+
+        if (message && errorData.message == "user already exists") {
+          message.innerHTML = "Usuario o correo ya registrado anteriormente";
+          message.style.color = "red";
+        }
       }
     } catch (error) {
       console.error('Error:', error);
