@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 interface Tweet {
   likes: number;
-  id: string;
+  _id: string;
   content: string;
   user: {
     _id: string;
@@ -15,17 +15,20 @@ interface Tweet {
   createdAt: string;
 }
 
+const apiURL = 'http://localhost:8083';
+
 const TweetList = () => {
   const [likedTweets, setLikedTweets] = useState<number[]>([]);
   const [tweets, setTweets] = useState<Tweet[]>([]);
 
   useEffect(() => {
     const fetchTweets = async () => {
-      const url = 'http://localhost:8083/api/tweets';
+      const url = `${apiURL}/api/tweets/`;
       const response = await fetch(url, {
         method: 'GET',
         headers: {
-          'x-access-token': localStorage.getItem('token') || ''
+          'x-access-token': localStorage.getItem('token') || '',
+          'Content-Type': 'application/json'
         }
       });
       const data = await response.json();
@@ -34,6 +37,28 @@ const TweetList = () => {
 
     fetchTweets();
   }, []);
+
+  const handleDeleteTweet = async (tweetId: string, userId: string) => {
+    console.log('Deleting tweet with ID:', tweetId);
+    console.log('User ID:', userId);
+
+    const url = `${apiURL}/api/tweets`;
+    const response = await fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'x-access-token': localStorage.getItem('token') || '',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        tweetId,
+        userId
+      })
+    });
+    if (response.ok) {
+      setTweets(prevTweets => prevTweets.filter(tweet => tweet._id !== tweetId));
+    }
+  }
+
   
   // const tweets: Tweet[] = [
   //   {
@@ -69,9 +94,10 @@ const TweetList = () => {
   return (
     <div className="tweet-list">
       {tweets.map(tweet => {
+        // const isLiked = likedTweets.includes(tweet._id);
         if(tweet.user.username === localStorage.getItem('username')){
           return (
-            <article key={tweet.id} className="tweet">
+            <article key={tweet._id} className="tweet">
               <img 
                 src="/avatar.png" 
                 alt={tweet.user.username} 
@@ -101,6 +127,10 @@ const TweetList = () => {
                     <span className="stat-number">
                       {formatNumber(isLiked ? tweet.likes + 1 : tweet.likes)}
                     </span> */}
+                  </button>
+                  <button className='delete-tweet' type='button' onClick={() => handleDeleteTweet(tweet._id, tweet.user._id)}>
+                    <span className="delete-tweet-text">Delete</span>
+                    <span className="delete-tweet-icon">🗑️</span>
                   </button>
                 </div>
               </div>
