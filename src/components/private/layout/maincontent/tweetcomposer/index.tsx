@@ -2,18 +2,6 @@ import { JSX, useState } from 'react';
 import './index.css';
 
 const apiURL = 'http://localhost:8083';
-interface Tweet {
-  likes: number;
-  _id: string;
-  content: string;
-  user: {
-    _id: string;
-    name: string;
-    username: string;
-  };
-  comments: string[];
-  createdAt: string;
-}
 
 interface TweetComposerProps {
   activateTweetComposer: boolean;
