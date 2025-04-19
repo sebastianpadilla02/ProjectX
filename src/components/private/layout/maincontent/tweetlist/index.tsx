@@ -116,7 +116,7 @@ const TweetList = () => {
           return (
             <article key={tweet._id} className="tweet">
               <img 
-                src="/avatar.png" 
+                src="./src/assets/user.png"
                 alt={tweet.user.username} 
                 className="tweet-avatar"
               />

@@ -27,7 +27,7 @@ const CommentList = ({ comments }: CommentListProps) => {
             {commentList.map((comment, index) => (
                 <article key={index} className="comment">
                     <img 
-                        src="/avatar.png" 
+                        src="./src/assets/user.png"
                         alt="User Avatar" 
                         className="comment-avatar"
                     />
