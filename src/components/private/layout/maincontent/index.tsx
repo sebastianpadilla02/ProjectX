@@ -16,7 +16,7 @@ const MainContent = () => {
     <main className="main-content">
       {/* Header simple */}
       <header className="main-header">
-        <h2 id="hello-message">Hello {name}</h2>
+        <h2 id="hello-message">For you {name}</h2>
       </header>
 
       <TweetComposer />

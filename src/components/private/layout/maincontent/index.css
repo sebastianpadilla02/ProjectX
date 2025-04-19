@@ -5,10 +5,12 @@
   }
   
   .main-content {
-    width: 100%;
+    margin-left: var(--sidebar-width);
+    width: 600px;
+    min-height: 100vh;
     border-left: 1px solid var(--main-border-color);
     border-right: 1px solid var(--main-border-color);
-  }
+}
   
   /* Header Styles */
   .main-header {
