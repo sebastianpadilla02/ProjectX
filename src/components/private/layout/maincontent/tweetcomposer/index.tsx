@@ -41,7 +41,7 @@ const TweetComposer = () => {
     <div className="tweet-composer">
       <div className="tweet-composer-inner">
         <img 
-          src="/avatar.png" 
+          src="./src/assets/user.png" 
           alt="Profile" 
           className="profile-image"
         />

@@ -59,12 +59,6 @@ const Sidebar = () => {
           ))}
         </nav>
 
-        {/* Botón de Post */}
-        <div className="post-button-wrapper">
-          <button className="post-button">
-            <span className="post-button-text">Post</span>
-          </button>
-        </div>
 
         <div className="logout-wrapper">
           <button type='button' className="logout-button" onClick={handleLogout}>
@@ -74,17 +68,18 @@ const Sidebar = () => {
 
         {/* User Profile Button */}
         <div className="profile-button-wrapper">
-          <button className="profile-button">
+          <button 
+            onClick={() => navigate('/profile')}
+            className="profile-button">
             <img 
-              src="/avatar.png" 
+              src= "./src/assets/user.png"
               alt="profile" 
               className="profile-image"
             />
             <div className="profile-info">
-              <span className="profile-name">user</span>
-              <span className="profile-username">@user</span>
+              <span className="profile-name">{localStorage.getItem('name')}</span>
+              <span className="profile-username">@{localStorage.getItem('name')}</span>
             </div>
-            <span className="profile-more">...</span>
           </button>
         </div>
       </div>
