@@ -1,0 +1,45 @@
+.comment-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid rgb(47, 51, 54);
+    transition: background-color 0.2s;
+}
+
+.comment:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+  
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-content {
+    flex: 1;
+}
+  
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+  
+.comment-name {
+    font-weight: 700;
+    color: #fff;
+}
+
+.comment-text {
+    color: #fff;
+    margin-bottom: 12px;
+    line-height: 1.3;
+}

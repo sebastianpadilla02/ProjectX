@@ -1,6 +1,8 @@
 import './index.css';
 import { FaRegComment, FaRegHeart, FaHeart } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import CommentComposer from './commentcomposer';
+import CommentList from './commentlist';
 
 interface Tweet {
   likes: number;
@@ -20,6 +22,7 @@ const apiURL = 'http://localhost:8083';
 const TweetList = () => {
   const [likedTweets, setLikedTweets] = useState<string[]>([]);
   const [tweets, setTweets] = useState<Tweet[]>([]);
+  const [activeCommentComposer, setActiveCommentComposer] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchTweets = async () => {
@@ -125,9 +128,9 @@ const TweetList = () => {
                 </div>
                 <p className="tweet-text">{tweet.content}</p>
                 <div className="tweet-stats">
-                  <button className="tweet-stat">
+                  <button className="tweet-stat" type="button" onClick={() =>  setActiveCommentComposer(activeCommentComposer === tweet._id ? null : tweet._id)}>
                     <FaRegComment className="stat-icon" />
-                    {/* <span className="stat-number">{formatNumber(tweet.replies)}</span> */}
+                    <span className="stat-number">{formatNumber(tweet.comments.length)}</span>
                   </button>
                   <button 
                     className={`tweet-stat ${isLiked ? 'liked' : ''}`}
@@ -147,6 +150,18 @@ const TweetList = () => {
                     <span className="delete-tweet-icon">🗑️</span>
                   </button>
                 </div>
+                <>
+                  {activeCommentComposer === tweet._id && (
+                    <CommentComposer tweetId={tweet._id} userId={tweet.user._id} />
+                  )
+                  }
+                </>
+                <>
+                  {tweet.comments.length > 0 ? (
+                    <CommentList comments={tweet.comments} />
+                  ) : (undefined)
+                  }
+                </>
               </div>
             </article>
           );

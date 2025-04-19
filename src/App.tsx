@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/public/login';
 import SignUp from './components/public/signup';
 import Layout from './components/private/layout/layout';
-import Profile from './components/private/profile';
 
 function App() {
   const isAuthenticated = localStorage.getItem('token') !== null;
