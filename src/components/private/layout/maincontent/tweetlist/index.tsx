@@ -59,20 +59,6 @@ const TweetList = () => {
     }
   }
 
-  
-  // const tweets: Tweet[] = [
-  //   {
-  //     id: 1,
-  //     username: "C.",
-  //     handle: "@LoremIpsum",
-  //     content: "Amigos, celébrense TODO, cosas grandes o pequeñas, apláudanse, felicítense por lo mucho o lo poco. Solo ustedes saben lo que les costó y lo que les ha costado",
-  //     timestamp: "Apr 13",
-  //     likes: 22000,
-  //     replies: 7,
-  //   },
-  //   // Puedes agregar más tweets aquí
-  // ];
-
   const formatNumber = (num: number): string => {
     if (num >= 1000000) {
       return (num / 1000000).toFixed(1) + 'M';

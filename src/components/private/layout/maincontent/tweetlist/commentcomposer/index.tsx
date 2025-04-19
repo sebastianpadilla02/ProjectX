@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from 'react';
+import { useState} from 'react';
 import './index.css';
 
 const apiURL = 'http://localhost:8083';
@@ -18,10 +18,6 @@ const CommentComposer = ({ tweetId, userId }: CommentComposerProps) => {
     e.preventDefault();
     if (commentText.trim()) {
       console.log('Comment posted:', commentText);
-
-      // const data = {
-      //   content: commentText
-      // }
 
       const url = `${apiURL}/api/tweets/comments`;
       console.log('tweet_id:', tweet_id, ' user_id:', user_id);

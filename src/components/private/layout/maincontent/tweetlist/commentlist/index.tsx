@@ -34,8 +34,6 @@ const CommentList = ({ comments }: CommentListProps) => {
                     <div className="comment-content">
                         <div className="comment-header">
                             <span className="comment-name">{comment.user.username}</span>
-                            {/* <span className="comment-dot">·</span> */}
-                            {/* <span className="tweet-time">{tweet.createdAt}</span> */}
                         </div>
                         <p className="comment-text">{comment.comment}</p>
                     </div>
