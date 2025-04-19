@@ -15,7 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/home" element={<Layout />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Layout />} />
           {/* Redirigir a login por defecto */}
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
@@ -29,7 +29,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/home" element={<Layout />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Layout />} />
           {/* Redirigir a login por defecto */}
           <Route path="/" element={<Navigate to="/home" replace />} />
         </Routes>
