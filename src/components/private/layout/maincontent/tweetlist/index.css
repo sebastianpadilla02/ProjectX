@@ -90,6 +90,17 @@
   .stat-number {
     font-size: 13px;
   }
+
+  .delete-tweet {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgb(113, 118, 123);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 9999px;
+    transition: all 0.2s;
+  }
   
   @media (max-width: 688px) {
     .tweet {

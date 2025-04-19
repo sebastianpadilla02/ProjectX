@@ -1,4 +1,3 @@
-import TweetComposer from './tweetcomposer/index';
 import TweetList from './tweetlist/index';
 import './index.css';
 import { useState, useEffect} from 'react';
@@ -19,7 +18,6 @@ const MainContent = () => {
         <h2 id="hello-message">For you {name}</h2>
       </header>
 
-      <TweetComposer />
       <TweetList />
 
     </main>

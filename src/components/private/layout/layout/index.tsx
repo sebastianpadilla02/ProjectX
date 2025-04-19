@@ -1,12 +1,11 @@
 import Sidebar from '../sidebar';
 import MainContent from '../maincontent';
 import Profile from '../../profile';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import './index.css';
 
 const Layout = () => {
     const location = useLocation();
-    const navigate = useNavigate();
     
     /* Verificar autenticación en cada renderizado
     if (!localStorage.getItem('token')) {

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { IoArrowBack } from 'react-icons/io5';
 import './index.css';
 import TweetList from '../layout/maincontent/tweetlist';
