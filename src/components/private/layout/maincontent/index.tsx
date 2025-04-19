@@ -19,7 +19,7 @@ const MainContent = () => {
         <h2 id="hello-message">For you {name}</h2>
       </header>
 
-      <TweetComposer />
+      {/* <TweetComposer /> */}
       <TweetList />
 
     </main>

@@ -1,9 +1,26 @@
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 import './index.css';
 
 const apiURL = 'http://localhost:8083';
+interface Tweet {
+  likes: number;
+  _id: string;
+  content: string;
+  user: {
+    _id: string;
+    name: string;
+    username: string;
+  };
+  comments: string[];
+  createdAt: string;
+}
 
-const TweetComposer = () => {
+interface TweetComposerProps {
+  activateTweetComposer: boolean;
+  setActivateTweetComposer: (value: boolean) => void;
+}
+
+function TweetComposer({activateTweetComposer, setActivateTweetComposer }: TweetComposerProps): JSX.Element {
   const [tweetText, setTweetText] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,6 +50,7 @@ const TweetComposer = () => {
       if (response.ok) {
         console.log('Tweet posted successfully:', responseData);
         setTweetText('');
+        setActivateTweetComposer(!activateTweetComposer);
       }
     }
   };

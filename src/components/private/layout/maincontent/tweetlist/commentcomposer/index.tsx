@@ -6,9 +6,12 @@ const apiURL = 'http://localhost:8083';
 interface CommentComposerProps {
   tweetId: string;
   userId: string;
+  activateComment: boolean;
+  setActivateComment: (value: boolean) => void;
+  setActiveCommentComposer: (value: string | null) => void;
 }
 
-const CommentComposer = ({ tweetId, userId }: CommentComposerProps) => {
+const CommentComposer = ({ tweetId, userId, activateComment, setActivateComment, setActiveCommentComposer }: CommentComposerProps) => {
   const [commentText, setCommentText] = useState('');
 
 
@@ -39,6 +42,8 @@ const CommentComposer = ({ tweetId, userId }: CommentComposerProps) => {
       if (response.ok) {
         console.log('Comment posted successfully:', responseData);
         setCommentText('');
+        setActivateComment(!activateComment);
+        setActiveCommentComposer(null);
       }
     }
   };
