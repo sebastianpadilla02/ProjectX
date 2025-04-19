@@ -18,7 +18,7 @@ interface Tweet {
 const apiURL = 'http://localhost:8083';
 
 const TweetList = () => {
-  const [likedTweets, setLikedTweets] = useState<number[]>([]);
+  const [likedTweets, setLikedTweets] = useState<string[]>([]);
   const [tweets, setTweets] = useState<Tweet[]>([]);
 
   useEffect(() => {
@@ -39,9 +39,6 @@ const TweetList = () => {
   }, []);
 
   const handleDeleteTweet = async (tweetId: string, userId: string) => {
-    console.log('Deleting tweet with ID:', tweetId);
-    console.log('User ID:', userId);
-
     const url = `${apiURL}/api/tweets`;
     const response = await fetch(url, {
       method: 'DELETE',
@@ -83,18 +80,35 @@ const TweetList = () => {
     return num.toString();
   };
 
-  const handleLike = (tweetId: number) => {
-    setLikedTweets(prev => 
-      prev.includes(tweetId) 
-        ? prev.filter(id => id !== tweetId)
-        : [...prev, tweetId]
-    );
+  const handleLike = async (tweetId: string) => {
+    const url = `${apiURL}/api/tweets/likes`;
+    
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'x-access-token': localStorage.getItem('token') || '',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        tweetId
+      })
+    });
+
+    if (response.ok) {
+      setLikedTweets(prevLikedTweets => {
+        if (prevLikedTweets.includes(tweetId)) {
+          return prevLikedTweets.filter(id => id !== tweetId);
+        } else {
+          return [...prevLikedTweets, tweetId];
+        }
+      });
+    }
   };
 
   return (
     <div className="tweet-list">
       {tweets.map(tweet => {
-        // const isLiked = likedTweets.includes(tweet._id);
+        const isLiked = likedTweets.includes(tweet._id);
         if(tweet.user.username === localStorage.getItem('username')){
           return (
             <article key={tweet._id} className="tweet">
@@ -116,17 +130,17 @@ const TweetList = () => {
                     {/* <span className="stat-number">{formatNumber(tweet.replies)}</span> */}
                   </button>
                   <button 
-                    // className={`tweet-stat ${isLiked ? 'liked' : ''}`}
-                    // onClick={() => handleLike(tweet.id)}
+                    className={`tweet-stat ${isLiked ? 'liked' : ''}`}
+                    onClick={isLiked ? undefined : () => handleLike(tweet._id)}
                   >
-                    {/* {isLiked ? (
+                    {isLiked ? (
                       <FaHeart className="stat-icon" />
                     ) : (
                       <FaRegHeart className="stat-icon" />
                     )}
                     <span className="stat-number">
                       {formatNumber(isLiked ? tweet.likes + 1 : tweet.likes)}
-                    </span> */}
+                    </span>
                   </button>
                   <button className='delete-tweet' type='button' onClick={() => handleDeleteTweet(tweet._id, tweet.user._id)}>
                     <span className="delete-tweet-text">Delete</span>
