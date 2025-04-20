@@ -82,6 +82,7 @@ function SignUp() {
         if(message) {
           message.innerHTML = "User registered successfully";
           message.style.color = "green";
+          message.style.fontFamily = "Inter, sans-serif";
         }
 
         if(document) {
