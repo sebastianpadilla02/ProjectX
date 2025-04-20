@@ -1,65 +1,65 @@
-# ProjectX - Clon de Twitter/X
+# ProjectX - Twitter/X Clone
 
-## Descripción
-ProjectX es una aplicación web inspirada en Twitter/X, que permite a los usuarios registrarse, iniciar sesión, publicar tweets, comentar en publicaciones y dar "me gusta". La aplicación está desarrollada con React, TypeScript y Vite.
+## Description
+ProjectX is a web application inspired by Twitter/X, allowing users to register, log in, post tweets, comment on posts, and like them. The application is developed with React, TypeScript, and Vite, offering a modern and responsive user interface.
 
-## Características principales
-- ✅ Registro de usuarios
-- ✅ Autenticación mediante tokens
-- ✅ Publicación de tweets
-- ✅ Comentarios en publicaciones
-- ✅ Sistema de "me gusta"
-- ✅ Perfil de usuario
-- ✅ Diseño responsivo (móvil, tablet, desktop)
+## Key Features
+- ✅ User registration
+- ✅ Token-based authentication
+- ✅ Tweet posting
+- ✅ Commenting on posts
+- ✅ Like system
+- ✅ User profile
+- ✅ Responsive design (mobile, tablet, desktop)
 
-## Tecnologías utilizadas
+## Technologies Used
 - React 19
 - TypeScript
 - Vite
 - React Router DOM
 - React Icons
-- CSS personalizado
+- Custom CSS
 
-## Requisitos previos
-- Node.js (versión 18 o superior)
-- npm o yarn
-- API Backend ejecutándose en `http://localhost:8083` (ver sección de Backend)
+## Prerequisites
+- Node.js (version 18 or higher)
+- npm or yarn
+- Backend API running at `http://localhost:8083` (see Backend section)
 
-## Instalación
+## Installation
 
-1. Clona el repositorio
+1. Clone the repository
 ```bash
-git clone https://github.com/tu-usuario/projectx.git
+git clone https://github.com/your-username/projectx.git
 cd projectx
 ```
 
-2. Instala las dependencias
+2. Install dependencies
 ```bash
 npm install
-# o
+# or
 yarn
 ```
 
-3. Ejecuta el proyecto en modo desarrollo
+3. Run the project in development mode
 ```bash
 npm run dev
-# o
+# or
 yarn dev
 ```
 
-4. Abre tu navegador en `http://localhost:5173` (o el puerto que Vite indique en la terminal)
+4. Open your browser at `http://localhost:5173` (or the port indicated by Vite in the terminal)
 
-## Uso
+## Usage
 
-### Rutas públicas
-- `/login` - Página de inicio de sesión
-- `/register` - Página de registro
+### Public Routes
+- `/login` - Login page
+- `/register` - Registration page
 
-### Rutas privadas (requieren autenticación)
-- `/home` - Feed principal
-- `/profile` - Perfil del usuario
+### Private Routes (require authentication)
+- `/home` - Main feed
+- `/profile` - User profile
 
-## Estructura del proyecto
+## Project Structure
 
 ```
 ProjectX/
@@ -84,17 +84,22 @@ ProjectX/
 └── vite.config.ts
 ```
 
-## API Backend
+## Backend API
 
-El frontend se comunica con una API REST que debe estar ejecutándose en `http://localhost:8083`. La API debe proporcionar los siguientes endpoints:
+The frontend communicates with a REST API that must be running at `http://localhost:8083`. The API should provide the following endpoints:
 
-- `POST /api/users` - Registro de usuarios
-- `POST /api/users/login` - Inicio de sesión
-- `GET /api/tweets` - Obtener tweets
-- `POST /api/tweets` - Crear tweet
-- `DELETE /api/tweets` - Eliminar tweet
-- `POST /api/tweets/likes` - Dar "me gusta" a un tweet
-- `POST /api/tweets/comments` - Comentar en un tweet
+- `POST /api/users` - User registration
+- `POST /api/users/login` - User login
+- `GET /api/tweets` - Fetch tweets
+- `POST /api/tweets` - Create a tweet
+- `DELETE /api/tweets` - Delete a tweet
+- `POST /api/tweets/likes` - Like a tweet
+- `POST /api/tweets/comments` - Comment on a tweet
+
+## Authors
+
+[![Author](https://img.shields.io/badge/by-sebastianpadilla02-purple)](https://github.com/sebastianpadilla02) [![Author](https://img.shields.io/badge/by-lunajulio-blue)](https://github.com/lunajulio)
 
 
-*Nota: Este proyecto es un clon de Twitter/X con fines educativos y de demostración.*
+
+*Note: This project is a Twitter/X clone for educational and demonstration purposes.*
