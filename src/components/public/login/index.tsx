@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
+import { useFeature } from '@growthbook/growthbook-react';
 import './index.css'
 
 const apiURL = 'http://localhost:8083';
 
 function Login() {
+  const { value: showForgotPassword } = useFeature('showForgotPasswordButton');
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
       username: '',
@@ -113,9 +115,16 @@ function Login() {
               Siguiente
             </button>
 
-            <button type="button" className="forgot-password-button">
-              ¿Olvidaste tu contraseña?
-            </button>
+
+            {showForgotPassword ? (
+              <button type="button" className="forgot-password-button">
+                ¿Olvidaste tu contraseña?
+              </button>
+            ) : (
+              <a href="#">
+                ¿Olvidaste tu contraseña?
+              </a>
+            )}
           </form>
 
           <div className="register-prompt">
