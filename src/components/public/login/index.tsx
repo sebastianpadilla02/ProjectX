@@ -117,7 +117,7 @@ function Login() {
 
 
             {showForgotPassword ? (
-              <button type="button" className="forgot-password-button">
+              <button type="button" className="forgot-password-button" onClick={() => {throw new Error('Botón de "Olvidaste tu contraseña" no implementado')}}>
                 ¿Olvidaste tu contraseña?
               </button>
             ) : (

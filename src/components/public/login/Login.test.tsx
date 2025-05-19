@@ -2,6 +2,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Login from './index';
 import '@testing-library/jest-dom';
+import { GrowthBookProvider } from '@growthbook/growthbook-react';
+import { growthbook } from '../../../growthbook'; // ajusta la ruta según tu estructura
 
 const mockedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
@@ -20,9 +22,11 @@ describe('Login Component', () => {
 
   const renderLogin = () => {
     render(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
+      <GrowthBookProvider growthbook={growthbook}>
+        <BrowserRouter>
+          <Login />
+        </BrowserRouter>
+      </GrowthBookProvider>
     );
   };
 

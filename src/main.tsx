@@ -7,7 +7,7 @@ import { GrowthBookProvider } from '@growthbook/growthbook-react';
 import { growthbook } from './growthbook';
 
 Sentry.init({
-  dsn: "https://31097acda447c111893acd07a85f5294@o4509347337207808.ingest.us.sentry.io/4509349310562304",
+  dsn: import.meta.env.VITE_SENTRY_DSN,
   // Setting this option to true will send default PII data to Sentry.
   // For example, automatic IP address collection on events
   sendDefaultPii: true
