@@ -61,7 +61,8 @@ const TweetList = () => {
       })
     });
     if (response.ok) {
-      
+      const data = await response.json();
+      console.log('Tweet deleted successfully:', data);
     }
     setDeleteTweet(!deleteTweet);
   }

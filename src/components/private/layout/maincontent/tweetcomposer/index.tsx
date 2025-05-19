@@ -16,7 +16,6 @@ function TweetComposer({activateTweetComposer, setActivateTweetComposer }: Tweet
     if (tweetText.trim()) {
       console.log('Tweet posted:', tweetText);
 
-      // Aquí puedes agregar la lógica para enviar el tweet al servidor
       const data = {
         content: tweetText
       }

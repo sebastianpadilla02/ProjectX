@@ -1,54 +1,105 @@
-# React + TypeScript + Vite
+# ProjectX - Twitter/X Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+ProjectX is a web application inspired by Twitter/X, allowing users to register, log in, post tweets, comment on posts, and like them. The application is developed with React, TypeScript, and Vite, offering a modern and responsive user interface.
 
-Currently, two official plugins are available:
+## Key Features
+- ✅ User registration
+- ✅ Token-based authentication
+- ✅ Tweet posting
+- ✅ Commenting on posts
+- ✅ Like system
+- ✅ User profile
+- ✅ Responsive design (mobile, tablet, desktop)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies Used
+- React 19
+- TypeScript
+- Vite
+- React Router DOM
+- React Icons
+- Custom CSS
 
-## Expanding the ESLint configuration
+## Prerequisites
+- Node.js (version 18 or higher)
+- npm or yarn
+- Backend API running at `http://localhost:8083` (see Backend section)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Installation
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository
+```bash
+git clone https://github.com/your-username/projectx.git
+cd projectx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Install dependencies
+```bash
+npm install
+# or
+yarn
 ```
+
+3. Run the project in development mode
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open your browser at `http://localhost:5173` (or the port indicated by Vite in the terminal)
+
+## Usage
+
+### Public Routes
+- `/login` - Login page
+- `/register` - Registration page
+
+### Private Routes (require authentication)
+- `/home` - Main feed
+- `/profile` - User profile
+
+## Project Structure
+
+```
+ProjectX/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── private/
+│   │   │   ├── layout/
+│   │   │   │   ├── maincontent/
+│   │   │   │   │   ├── tweetcomposer/
+│   │   │   │   │   └── tweetlist/
+│   │   │   │   └── sidebar/
+│   │   │   └── profile/
+│   │   └── public/
+│   │       ├── login/
+│   │       └── signup/
+│   ├── App.tsx
+│   └── main.tsx
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
+## Backend API
+
+The frontend communicates with a REST API that must be running at `http://localhost:8083`. The API should provide the following endpoints:
+
+- `POST /api/users` - User registration
+- `POST /api/users/login` - User login
+- `GET /api/tweets` - Fetch tweets
+- `POST /api/tweets` - Create a tweet
+- `DELETE /api/tweets` - Delete a tweet
+- `POST /api/tweets/likes` - Like a tweet
+- `POST /api/tweets/comments` - Comment on a tweet
+
+## Authors
+
+[![Author](https://img.shields.io/badge/by-sebastianpadilla02-purple)](https://github.com/sebastianpadilla02) [![Author](https://img.shields.io/badge/by-lunajulio-blue)](https://github.com/lunajulio)
+
+
+
+*Note: This project is a Twitter/X clone for educational and demonstration purposes.*
