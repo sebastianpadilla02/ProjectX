@@ -3,11 +3,9 @@ import './index.css';
 import { useState, useEffect} from 'react';
 
 const MainContent = () => {
-  const [username, setUsername] = useState('');
   const [name, setName] = useState('');
 
   useEffect(() => {
-    setUsername(localStorage.getItem('username') || '');
     setName(localStorage.getItem('name') || '');
   }, []);
 

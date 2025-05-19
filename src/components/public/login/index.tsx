@@ -83,7 +83,6 @@ function Login() {
           </div>
 
           <h1>Inicia sesión en X</h1>
-
           <form className="login-form">
             <div className="input-group">
               <input
